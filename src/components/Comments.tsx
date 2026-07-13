@@ -3,9 +3,10 @@ import { Show, SignInButton } from "@clerk/nextjs";
 import { client } from "@/sanity/lib/client";
 import { COMMENTS_BY_POST_QUERY } from "@/sanity/lib/queries";
 import { submitComment } from "@/app/actions/comments";
-import { urlForImage } from "@/sanity/lib/image";
 import type { Comment } from "@/sanity/lib/types";
 
+// Server component that renders approved comments and a submission form
+// The form uses the server action and gates on Clerk auth state
 export default async function Comments({ postId, postSlug }: { postId: string, postSlug: string }) {
   const comments = await client.fetch<Comment[]>(COMMENTS_BY_POST_QUERY, { postId });
 
@@ -38,6 +39,7 @@ export default async function Comments({ postId, postSlug }: { postId: string, p
         ))}
       </div>
 
+      {/* Signed-in users see the comment form */}
       <Show when="signed-in">
         <form action={submitComment} className="mt-6">
           <input type="hidden" name="postId" value={postId} />
@@ -55,6 +57,7 @@ export default async function Comments({ postId, postSlug }: { postId: string, p
         </form>
       </Show>
 
+      {/* Signed-out users see a sign-in prompt */}
       <Show when="signed-out">
         <div className="mt-6 text-sm">
           <SignInButton mode="modal">

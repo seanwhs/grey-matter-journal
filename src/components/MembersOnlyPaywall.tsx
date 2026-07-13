@@ -1,5 +1,6 @@
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
+// Server component: shown in place of post body when a members-only post is viewed by a non-authenticated user
 export default function MembersOnlyPaywall() {
   return (
     <div className="not-prose mt-6 rounded-xl border border-dashed border-gray-300 bg-gray-50 p-6 text-center dark:border-gray-700 dark:bg-gray-900 sm:p-8">

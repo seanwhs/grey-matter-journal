@@ -1,27 +1,27 @@
 import { type PortableTextBlock } from "next-sanity";
 import { type SanityImageSource } from "@sanity/image-url";
 
+// Mirror of the Sanity post schema — used as the return type for GROQ queries
 export interface Post {
   _id: string;
   title: string;
   slug: { current: string };
   excerpt: string;
-  mainImage: SanityImageSource & { alt?: string }; 
+  mainImage: SanityImageSource & { alt?: string };
   publishedAt: string;
   isMembersOnly: boolean;
-  author: { 
-    name: string; 
+  author: {
+    name: string;
     slug: { current: string };
-    image?: SanityImageSource 
+    image?: SanityImageSource;
   };
-  categories: { 
-    title: string; 
-    slug: { current: string } 
+  categories: {
+    title: string;
+    slug: { current: string };
   }[];
   body?: PortableTextBlock[];
 }
 
-// Add these exports to match your queries
 export interface Category {
   _id: string;
   title: string;

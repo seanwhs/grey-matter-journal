@@ -7,6 +7,7 @@ import PostCard from "@/components/PostCard";
 export const revalidate = 60;
 type PageProps = { params: Promise<{ slug: string }> };
 
+// ISR: pre-render all category pages at build time
 export async function generateStaticParams() {
   const slugs = await client.fetch<string[]>(CATEGORY_SLUGS_QUERY);
   return slugs.map((slug) => ({ slug }));
@@ -23,13 +24,13 @@ export default async function CategoryPage({ params }: PageProps) {
   const category = await client.fetch<Category>(CATEGORY_QUERY, { slug });
   if (!category) notFound();
 
+  // Fetch all posts tagged with this category
   const posts = await client.fetch<Post[]>(POSTS_BY_CATEGORY_QUERY, { category: slug });
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-16">
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">{category.title}</h1>
       {category.description && <p className="mt-2 text-gray-600 dark:text-gray-300">{category.description}</p>}
-      
       <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => <PostCard key={post._id} post={post} />)}
       </div>

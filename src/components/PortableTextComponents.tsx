@@ -6,12 +6,13 @@ import CodeBlock from "./CodeBlock";
 export const portableTextComponents: PortableTextComponents = {
   types: {
     image: ({ value }) => (
-      <div className="relative my-8 h-48 w-full overflow-hidden rounded-lg sm:h-64 lg:h-96">
+      <div className="my-8">
         <Image
           src={urlForImage(value).width(1200).url()}
           alt={value.alt || " "}
-          fill
-          className="object-cover"
+          width={1200}
+          height={675}
+          className="rounded-lg w-full h-auto"
         />
       </div>
     ),

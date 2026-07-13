@@ -1,16 +1,17 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
+// Define public routes that don't require authentication
 const isPublicRoute = createRouteMatcher([
   "/",
   "/sign-in(.*)",
   "/sign-up(.*)",
-  "/studio(.*)", // Ensure this is here
+  "/studio(.*)",
   "/categories(.*)",
-  "/posts(.*)"
+  "/posts(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  // If it's NOT a public route, protect it
+  // Protect all non-public routes (e.g. admin pages)
   if (!isPublicRoute(request)) {
     await auth.protect();
   }
@@ -18,8 +19,7 @@ export default clerkMiddleware(async (auth, request) => {
 
 export const config = {
   matcher: [
-    // This regex says: "Match everything EXCEPT static files AND /studio"
-    // By adding (?!studio) we ensure the middleware doesn't touch the studio at all.
+    // Match everything EXCEPT static files and the /studio route (handled separately)
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)|studio).*)",
     "/(api|trpc)(.*)",
   ],

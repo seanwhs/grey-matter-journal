@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { UserIcon } from "@sanity/icons/User";
 
+// Author document type — each post references one author
 export const author = defineType({
   name: "author",
   title: "Author",
@@ -24,7 +25,7 @@ export const author = defineType({
       name: "image",
       title: "Photo",
       type: "image",
-      options: { hotspot: true },
+      options: { hotspot: true }, // Enables focal-point cropping in the Studio
     }),
     defineField({
       name: "bio",

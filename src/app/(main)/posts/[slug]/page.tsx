@@ -81,12 +81,13 @@ export default async function PostPage({ params }: PageProps) {
       )}
 
       {post.mainImage && (
-        <div className="relative mt-8 h-48 w-full overflow-hidden rounded-xl sm:h-64 lg:h-96">
+        <div className="mt-8">
           <Image
-            src={urlForImage(post.mainImage).width(1200).height(675).url()}
+            src={urlForImage(post.mainImage).width(1200).url()}
             alt={post.mainImage.alt || post.title}
-            fill
-            className="object-cover"
+            width={1200}
+            height={675}
+            className="rounded-xl w-full h-auto"
             priority
           />
         </div>

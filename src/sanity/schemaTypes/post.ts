@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { DocumentIcon } from "@sanity/icons/Document";
 
+// Post document type — the core content model for the blog
 export const post = defineType({
   name: "post",
   title: "Post",

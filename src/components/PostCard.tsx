@@ -3,6 +3,7 @@ import Link from "next/link";
 import { urlForImage } from "@/sanity/lib/image";
 import type { Post } from "@/sanity/lib/types";
 
+// Post preview card used in grid layouts (homepage, author, category pages)
 export default function PostCard({ post }: { post: Post }) {
   return (
     <Link href={`/posts/${post.slug.current}`} className="group block rounded-xl border border-gray-200 p-4 transition hover:shadow-lg dark:border-gray-700">
@@ -10,8 +11,7 @@ export default function PostCard({ post }: { post: Post }) {
         {post.mainImage && (
           <Image
             src={urlForImage(post.mainImage).width(600).height(400).url()}
-            // TypeScript now recognizes .alt here
-            alt={post.mainImage.alt || post.title} 
+            alt={post.mainImage.alt || post.title}
             fill
             className="object-cover transition group-hover:scale-105"
           />

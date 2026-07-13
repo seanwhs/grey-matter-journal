@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { TagIcon } from "@sanity/icons/Tag";
 
+// Category document type — posts can belong to multiple categories
 export const category = defineType({
   name: "category",
   title: "Category",

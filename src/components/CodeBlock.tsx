@@ -3,6 +3,8 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+// Client component that renders syntax-highlighted code
+// Used by PortableTextComponents to render custom code blocks from Sanity
 export default function CodeBlock({
   language,
   code,

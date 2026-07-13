@@ -1,11 +1,14 @@
 import { defineType, defineArrayMember } from "sanity";
 import { ImageIcon } from "@sanity/icons/Image";
 
+// Rich-text/block content type used for post bodies
+// Built as an array of blocks (paragraphs, headings, lists) + inline images + custom code blocks
 export const blockContent = defineType({
   title: "Block Content",
   name: "blockContent",
   type: "array",
   of: [
+    // Standard Portable Text block — headings, lists, link annotations, inline formatting
     defineArrayMember({
       title: "Block",
       type: "block",
@@ -43,6 +46,7 @@ export const blockContent = defineType({
         ],
       },
     }),
+    // Inline image with optional alt text
     defineArrayMember({
       type: "image",
       icon: ImageIcon,
@@ -56,6 +60,7 @@ export const blockContent = defineType({
         },
       ],
     }),
+    // Custom code block — language selection + code textarea
     defineArrayMember({
       type: "object",
       name: "codeBlock",

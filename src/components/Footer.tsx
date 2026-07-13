@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+// Site-wide footer with copyright and legal links
 export default function Footer() {
   return (
     <footer className="border-t border-gray-200 dark:border-gray-800">

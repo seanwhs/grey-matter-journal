@@ -9,6 +9,7 @@ import PostCard from "@/components/PostCard";
 export const revalidate = 60;
 type PageProps = { params: Promise<{ slug: string }> };
 
+// ISR: pre-render all author pages at build time
 export async function generateStaticParams() {
   const slugs = await client.fetch<string[]>(AUTHOR_SLUGS_QUERY);
   return slugs.map((slug) => ({ slug }));

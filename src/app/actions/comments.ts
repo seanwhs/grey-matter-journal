@@ -4,8 +4,9 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { writeClient } from "@/sanity/lib/writeClient";
 
+// Server action: validates auth, writes a comment document to Sanity, revalidates the post page
 export async function submitComment(formData: FormData) {
-  const { userId } = await auth(); // MUST be awaited
+  const { userId } = await auth(); // MUST be awaited in Next.js 16
   if (!userId) throw new Error("Unauthorized");
 
   const postId = formData.get("postId") as string;
@@ -26,5 +27,6 @@ export async function submitComment(formData: FormData) {
     createdAt: new Date().toISOString(),
   });
 
+  // Re-fetch the post page so the new comment appears immediately
   revalidatePath(`/posts/${postSlug}`);
 }

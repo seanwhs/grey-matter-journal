@@ -4,6 +4,7 @@ import { CATEGORIES_QUERY } from "@/sanity/lib/queries";
 import type { Category } from "@/sanity/lib/types";
 import { HeaderAuth } from "./HeaderAuth";
 
+// Server component: renders the top navigation bar with category links + auth controls
 export default async function Header() {
   const categories = await client.fetch<Category[]>(CATEGORIES_QUERY);
 
@@ -13,7 +14,6 @@ export default async function Header() {
         <Link href="/" className="text-lg font-bold">
           Greymatter Journal
         </Link>
-
         <div className="flex items-center gap-2 sm:gap-6">
           <nav className="flex flex-wrap gap-2 text-sm sm:gap-4">
             {categories.map((cat) => (
@@ -26,8 +26,6 @@ export default async function Header() {
               </Link>
             ))}
           </nav>
-          
-          {/* Orchestrated Client Component */}
           <HeaderAuth />
         </div>
       </div>
