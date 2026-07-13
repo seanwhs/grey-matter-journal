@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { auth } from "@clerk/nextjs/server";
 import { client } from "@/sanity/lib/client";
@@ -48,10 +49,39 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+      <h1 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl">{post.title}</h1>
+
+      {post.author && (
+        <div className="mt-4 flex items-center gap-3">
+          {post.author.image && (
+            <Image
+              src={urlForImage(post.author.image).width(64).height(64).url()}
+              alt={post.author.name}
+              width={40}
+              height={40}
+              className="rounded-full object-cover"
+            />
+          )}
+          <div>
+            <Link
+              href={`/authors/${post.author.slug.current}`}
+              className="font-medium text-gray-900 hover:underline dark:text-white"
+            >
+              {post.author.name}
+            </Link>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+        </div>
+      )}
 
       {post.mainImage && (
-        <div className="relative mt-8 h-96 w-full overflow-hidden rounded-xl">
+        <div className="relative mt-8 h-48 w-full overflow-hidden rounded-xl sm:h-64 lg:h-96">
           <Image
             src={urlForImage(post.mainImage).width(1200).height(675).url()}
             alt={post.mainImage.alt || post.title}

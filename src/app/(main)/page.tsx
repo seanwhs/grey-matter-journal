@@ -13,7 +13,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       <div className="text-center">
         {/* Removed redundant brand name; focused on the mission */}
-        <h1 className="text-5xl font-bold tracking-tight text-balance sm:text-6xl">
+        <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
           Building better systems through thoughtful engineering.
         </h1>
         

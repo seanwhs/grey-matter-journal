@@ -6,7 +6,7 @@ import CodeBlock from "./CodeBlock";
 export const portableTextComponents: PortableTextComponents = {
   types: {
     image: ({ value }) => (
-      <div className="relative my-8 h-96 w-full overflow-hidden rounded-lg">
+      <div className="relative my-8 h-48 w-full overflow-hidden rounded-lg sm:h-64 lg:h-96">
         <Image
           src={urlForImage(value).width(1200).url()}
           alt={value.alt || " "}
@@ -34,9 +34,9 @@ export const portableTextComponents: PortableTextComponents = {
     ),
   },
   block: {
-    h1: ({ children }) => <h1 className="mt-8 text-3xl font-bold">{children}</h1>,
-    h2: ({ children }) => <h2 className="mt-8 text-2xl font-bold">{children}</h2>,
-    h3: ({ children }) => <h3 className="mt-6 text-xl font-bold">{children}</h3>,
+    h1: ({ children }) => <h1 className="mt-8 text-2xl font-bold sm:text-3xl">{children}</h1>,
+    h2: ({ children }) => <h2 className="mt-8 text-xl font-bold sm:text-2xl">{children}</h2>,
+    h3: ({ children }) => <h3 className="mt-6 text-lg font-bold sm:text-xl">{children}</h3>,
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-300">
         {children}

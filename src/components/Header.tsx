@@ -14,8 +14,8 @@ export default async function Header() {
           Greymatter Journal
         </Link>
 
-        <div className="flex items-center gap-6">
-          <nav className="flex gap-4 text-sm">
+        <div className="flex items-center gap-2 sm:gap-6">
+          <nav className="flex flex-wrap gap-2 text-sm sm:gap-4">
             {categories.map((cat) => (
               <Link
                 key={cat.slug.current}

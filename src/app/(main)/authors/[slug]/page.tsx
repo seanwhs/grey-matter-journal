@@ -23,14 +23,14 @@ export default async function AuthorPage({ params }: PageProps) {
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-16">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
         {author.image && (
           <div className="relative h-20 w-20 overflow-hidden rounded-full">
             <Image src={urlForImage(author.image).width(160).height(160).url()} alt={author.name} fill className="object-cover" />
           </div>
         )}
         <div>
-          <h1 className="text-3xl font-bold">{author.name}</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">{author.name}</h1>
           <p className="mt-1 max-w-xl text-gray-600 dark:text-gray-300">{author.bio}</p>
         </div>
       </div>

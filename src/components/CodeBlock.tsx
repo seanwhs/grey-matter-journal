@@ -11,12 +11,14 @@ export default function CodeBlock({
   code: string;
 }) {
   return (
-    <SyntaxHighlighter
-      language={language || "text"}
-      style={oneDark}
-      customStyle={{ borderRadius: "0.5rem", padding: "1rem" }}
-    >
-      {code}
-    </SyntaxHighlighter>
+    <div className="overflow-x-auto">
+      <SyntaxHighlighter
+        language={language || "text"}
+        style={oneDark}
+        customStyle={{ borderRadius: "0.5rem", padding: "1rem" }}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
   );
 }
